@@ -104,6 +104,12 @@
         if (!isGameOver) {
           jump();
         }
+      } else if (event.code === 'Enter') {
+        if (isGameOver) {
+          // Restart the game
+          isGameOver = false;
+          player.style.bottom = '0';
+        }
       }
     });
 
@@ -116,3 +122,4 @@
   </script>
 </body>
 </html>
+
