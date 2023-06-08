@@ -1,125 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Platformer Game</title>
+  <title>Hello World</title>
   <style>
-    #game {
-      width: 400px;
-      height: 300px;
-      border: 1px solid black;
-      position: relative;
-    }
-
-    #player {
-      width: 50px;
-      height: 50px;
-      background-color: blue;
-      position: absolute;
-      bottom: 0;
-    }
-
-    #platform {
-      width: 100px;
-      height: 20px;
-      background-color: green;
-      position: absolute;
-      bottom: 50px;
-      left: 150px;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: lightgreen;
     }
   </style>
 </head>
 <body>
-  <h1>Platformer Game</h1>
-  <div id="game">
-    <div id="player"></div>
-    <div id="platform"></div>
-  </div>
-
-  <script>
-    // Get the player and platform elements
-    const player = document.getElementById('player');
-    const platform = document.getElementById('platform');
-
-    // Variables to track player position and game status
-    let isJumping = false;
-    let isGameOver = false;
-    let playerPosition = 0;
-
-    // Function to handle player jumps
-    function jump() {
-      if (!isJumping) {
-        isJumping = true;
-        let jumpCount = 0;
-        const jumpInterval = setInterval(() => {
-          const jumpHeight = 150; // Maximum jump height in pixels
-          const jumpDuration = 500; // Jump duration in milliseconds
-          const jumpFrames = 50; // Number of frames for the jump animation
-          const frameHeight = jumpHeight / jumpFrames;
-          jumpCount++;
-
-          // Calculate player's vertical position
-          const newPosition = playerPosition + (frameHeight * jumpCount);
-          if (newPosition < jumpHeight) {
-            player.style.bottom = newPosition + 'px';
-          } else {
-            // Reached maximum jump height
-            clearInterval(jumpInterval);
-
-            // Perform the fall animation
-            const fallInterval = setInterval(() => {
-              jumpCount--;
-              const newPosition = playerPosition + (frameHeight * jumpCount);
-              if (newPosition >= 0) {
-                player.style.bottom = newPosition + 'px';
-              } else {
-                // Player landed on the ground
-                clearInterval(fallInterval);
-                isJumping = false;
-              }
-            }, jumpDuration / jumpFrames);
-          }
-        }, jumpDuration / jumpFrames);
-      }
-    }
-
-    // Function to check for collisions
-    function checkCollision() {
-      const playerRect = player.getBoundingClientRect();
-      const platformRect = platform.getBoundingClientRect();
-
-      if (
-        playerRect.bottom >= platformRect.top &&
-        playerRect.right >= platformRect.left &&
-        playerRect.left <= platformRect.right
-      ) {
-        // Player collided with the platform
-        isGameOver = true;
-        alert('Game Over');
-      }
-    }
-
-    // Event listener for space key to jump
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Space') {
-        if (!isGameOver) {
-          jump();
-        }
-      } else if (event.code === 'Enter') {
-        if (isGameOver) {
-          // Restart the game
-          isGameOver = false;
-          player.style.bottom = '0';
-        }
-      }
-    });
-
-    // Main game loop
-    setInterval(() => {
-      if (!isGameOver) {
-        checkCollision();
-      }
-    }, 10);
-  </script>
+  <h1>Hello world</h1>
 </body>
 </html>
-
